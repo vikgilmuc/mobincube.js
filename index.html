@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Mobincube.js by Mobincube</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Mobincube.js</h1>
+        <h2></h2>
+        <a href="https://github.com/Mobincube/mobincube.js" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="mobincubejs" class="anchor" href="#mobincubejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>mobincube.js</h1>
+
+<h1>
+<a id="protocolo-mobincube" class="anchor" href="#protocolo-mobincube" aria-hidden="true"><span class="octicon octicon-link"></span></a><em>Protocolo Mobincube</em>
+</h1>
+
+<hr>
+
+<hr>
+
+<h3>
+<a id="qué-es" class="anchor" href="#qu%C3%A9-es" aria-hidden="true"><span class="octicon octicon-link"></span></a>¿Qué es?</h3>
+
+<p>El <strong>Protocolo Mobincube</strong> es un conjuto de reglas que permiten las interacciones entre la parte web de una App y el contenido nativo de la propia App. Nos permiten realizar las acciones nativas de una App desde una página web.</p>
+
+<h3>
+<a id="empezando-con-el-protocolo-mobincube" class="anchor" href="#empezando-con-el-protocolo-mobincube" aria-hidden="true"><span class="octicon octicon-link"></span></a>Empezando con el Protocolo Mobincube.</h3>
+
+<p>El primer paso es crear un objeto llamado <strong>mobincube</strong> al que llamaremos en cada una de las siguientes consultas a realizar.</p>
+
+<pre><code>mobincube = new Mobincube();
+</code></pre>
+
+<h3>
+<a id="tipos-de-utilidades" class="anchor" href="#tipos-de-utilidades" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tipos de Utilidades</h3>
+
+<p>Existen diferentes tipos de utilidades que nos proporciona el <strong>Protocolo Mobincube</strong>. </p>
+
+<ul>
+<li><a href="#acciones">Acciones</a></li>
+<li><a href="#param">Parámetros Públicos</a></li>
+<li><a href="#modulos">Modulos</a></li>
+</ul>
+
+<hr>
+
+<h2>
+<a id="acciones" class="anchor" href="#acciones" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acciones</h2>
+
+<hr>
+
+<p>Las peticiones del protocolo Mobincube se realizan mediante la llamada de URLs con el formato mobincube:</p>
+
+<pre><code>//action/[nombre_acción]/[parámetros_acción]
+</code></pre>
+
+<p>Como ejemplo sencillo de este protocolo, aquí tenemos como abrir una sección de la App: </p>
+
+<pre><code>
+window.location.href="mobincube://action/section/encodeURIComponent(infosection1)";
+
+</code></pre>
+
+<p>La lista de acciones disponibles mediante el protocolo Mobincube son:</p>
+
+<ul>
+<li>
+<a href="#section">Section</a> – Permite abrir una sección nativa de la App.</li>
+<li>
+<a href="#view">View</a> – Permite abrir una vista de un visor de datos.</li>
+<li>
+<a href="#call">Call</a> – Permite hacer una llamada telefónica.</li>
+<li>
+<a href="#browser">Browser</a> – Abre una URL en el navegador externo del teléfono.</li>
+<li>
+<a href="#sms">SMS</a> – Permite enviar un SMS</li>
+<li>
+<a href="#route">Route</a> – Abre el navegador GPS del móvil para llevar al usuario a un destino.</li>
+<li>
+<a href="#share">Share</a> – Abre el panel para compartir contenido con otras Apps (social share)</li>
+<li>
+<a href="#next">Next</a> – Pasa al siguiente elemento de un visor de datos.</li>
+<li>
+<a href="#previous">Previous</a> – Pasa al elemente previo de un visor de datos.</li>
+<li>
+<a href="#interstitial">Interstitial</a> – Abre un anuncio de tipo interstitial.</li>
+<li>
+<a href="#play">Play</a> – Permite reproducir un archivo local de audio.</li>
+<li>
+<a href="#stop">Stop</a> – Detiene la reproducción de un archivo local de audio.</li>
+<li>
+<a href="#player">Player</a> – Abre el reproductor audio/video por defecto del móvil y permite reproducir streaming desde URLs externas</li>
+</ul>
+
+<p>Pasamos a desglosar el uso de cada una de las acciones y que parámetros se les puede pasar:</p>
+
+<h4>
+<a id="section" class="anchor" href="#section" aria-hidden="true"><span class="octicon octicon-link"></span></a>Section</h4>
+
+<p><strong>Propósito:</strong> Permite abrir una sección nativa de la App.</p>
+
+<p><strong>Nombre de la acción:</strong> openSection</p>
+
+<p><strong>Parámetros:</strong> Nombre de la sección.</p>
+
+<pre><code>Ejemplo: mobincube.action.openSection(view);
+
+</code></pre>
+
+<h4>
+<a id="view" class="anchor" href="#view" aria-hidden="true"><span class="octicon octicon-link"></span></a>View</h4>
+
+<p><strong>Propósito:</strong> Permite abrir una vista de un visor de datos. </p>
+
+<p><strong>Nombre de la acción:</strong> openView</p>
+
+<p><strong>Parámetros:</strong> nombre de la vista</p>
+
+<pre><code>Ejemplo: mobincube.action.openView(view);
+</code></pre>
+
+<p><strong><em>Notas:</em></strong> Sólo funcionará dentro de un visor de datos.</p>
+
+<h4>
+<a id="call" class="anchor" href="#call" aria-hidden="true"><span class="octicon octicon-link"></span></a>Call</h4>
+
+<p><strong>Propósito:</strong> Permite hacer una llamada telefónica.</p>
+
+<p><strong>Nombre de la acción:</strong> call</p>
+
+<p><strong>Parámetros:</strong> Cadena de texto que contiene el número de teléfono al que llamar</p>
+
+<pre><code>Ejemplo: mobincube.action.call(call);
+</code></pre>
+
+<h4>
+<a id="browser" class="anchor" href="#browser" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browser</h4>
+
+<p><strong>Propósito:</strong> Abre una URL en el navegador externo del teléfono.</p>
+
+<p><strong>Nombre de la acción:</strong> openBrowser</p>
+
+<p><strong>Parámetros:</strong> Cadena de texto con la URL que se tiene que abrir.</p>
+
+<pre><code>Ejemplo: mobincube.action.openBrowser(browser);
+
+</code></pre>
+
+<h4>
+<a id="sms" class="anchor" href="#sms" aria-hidden="true"><span class="octicon octicon-link"></span></a>SMS</h4>
+
+<p><strong>Propósito:</strong> Permite rellenar un SMS con el número de teléfono del destino y un texto inicial a completar por el usuario.</p>
+
+<p><strong>Nombre de la acción:</strong> sendSMS</p>
+
+<p><strong>Parámetros:</strong> una cadena de texto conteniendo en primer lugar el teléfono de destino, seguido de un espacio y el texto que rellenará</p>
+
+<pre><code>Ejemplo: mobincube.action.sendSMS(phone, sms);
+</code></pre>
+
+<p><strong><em>Notas:</em></strong> Esta acción rellena el destino y el cuerpo del SMS pero no lo envía directamente. Requiere que el usuario confirme él envió del SMS
+Los parámetros de esta acción tienen que llevar codificación URL para que la App pueda interpretarlos: <a href="http://www.w3schools.com/tags/ref_urlencode.asp">http://www.w3schools.com/tags/ref_urlencode.asp</a></p>
+
+<h4>
+<a id="route" class="anchor" href="#route" aria-hidden="true"><span class="octicon octicon-link"></span></a>Route</h4>
+
+<p><strong>Propósito:</strong> Abre el navegador GPS del móvil para llevar al usuario a un destino.</p>
+
+<p><strong>Nombre de la acción:</strong> route</p>
+
+<p><strong>Parámetros:</strong> cadena de texto que contiene la posición GPS del destino y, separado con un espacio,  una etiqueta optativa con el formato “ []” como ejemplo “40.449324,-3.692240 Madrid”</p>
+
+<pre><code>Ejemplo: mobincube.action.route(latitude, longitude, label);
+</code></pre>
+
+<p><strong><em>Notas:</em></strong> Los parámetros de esta acción tienen que llevar codificación URL para que la App pueda interpretarlos: <a href="http://www.w3schools.com/tags/ref_urlencode.asp">http://www.w3schools.com/tags/ref_urlencode.asp</a></p>
+
+<h4>
+<a id="share" class="anchor" href="#share" aria-hidden="true"><span class="octicon octicon-link"></span></a>Share</h4>
+
+<p><strong>Propósito:</strong> Abre el panel para compartir contenido con otras Apps (social share)</p>
+
+<p><strong>Nombre de la acción:</strong> share</p>
+
+<p><strong>Parámetros:</strong> Una cadena de texto con lo que se quiera compartir</p>
+
+<pre><code>Ejemplo: mobincube.action.share(share);
+</code></pre>
+
+<p><strong><em>Notas:</em></strong> Imágenes, audios, videos… se tendrán que compartir mediante URL porque la App no tiene acceso al recurso de la web.
+Los parámetros de esta acción tienen que llevar codificación URL para que la App pueda interpretarlos: <a href="http://www.w3schools.com/tags/ref_urlencode.asp">http://www.w3schools.com/tags/ref_urlencode.asp</a></p>
+
+<h4>
+<a id="next" class="anchor" href="#next" aria-hidden="true"><span class="octicon octicon-link"></span></a>Next</h4>
+
+<p><strong>Propósito:</strong> Pasa al siguiente elemento de un visor de datos.</p>
+
+<p><strong>Nombre de la acción:</strong> nextItem</p>
+
+<p><strong>Parámetros:</strong> Ninguno</p>
+
+<pre><code>Ejemplo: mobincube.action.nextItem();
+</code></pre>
+
+<p><strong><em>Notas:</em></strong> Esta acción solamente funciona dentro de un visor de datos.</p>
+
+<h4>
+<a id="previous" class="anchor" href="#previous" aria-hidden="true"><span class="octicon octicon-link"></span></a>Previous</h4>
+
+<p><strong>Propósito:</strong> Pasa al elemente previo de un visor de datos.</p>
+
+<p><strong>Nombre de la acción:</strong> previousItem</p>
+
+<p><strong>Parámetros:</strong> Ninguno</p>
+
+<pre><code>Ejemplo: mobincube.action.previousItem();
+</code></pre>
+
+<p><strong><em>Notas:</em></strong> Esta acción solamente funciona dentro de un visor de datos.</p>
+
+<h4>
+<a id="interstitial" class="anchor" href="#interstitial" aria-hidden="true"><span class="octicon octicon-link"></span></a>Interstitial</h4>
+
+<p><strong>Propósito:</strong> Abre un anuncio de tipo interstitial.</p>
+
+<p><strong>Nombre de la acción:</strong>openInterstitial</p>
+
+<p><strong>Parámetros:</strong> Ninguno</p>
+
+<pre><code>Ejemplo: mobincube.action.openInterstitial();
+</code></pre>
+
+<h4>
+<a id="play" class="anchor" href="#play" aria-hidden="true"><span class="octicon octicon-link"></span></a>Play</h4>
+
+<p><strong>Propósito:</strong> Permite reproducir un archivo local de audio.</p>
+
+<p><strong>Nombre de la acción:</strong> play</p>
+
+<p><strong>Parámetros:</strong> Objeto JSON que contiene resource y opciones.
+Resource es el ID del recurso audio que se tiene que reproducir.
+Como options tenemos loop, para saber si el recurso se tiene que reproducir en bucle (true) o una única vez (false)</p>
+
+<pre><code>JSON: 
+//reproducirá en bucle el recurso 1234 de tipo audio.
+{
+ "resource": "@audio1234",
+ "loop": true
+}
+</code></pre>
+
+<pre><code>Ejemplo: mobincube.action.play(play, loop);
+</code></pre>
+
+<p><strong><em>Notas:</em></strong> El recurso audio a reproducir tiene que estar ya dentro de la App para que se pueda reproducir mediante el gestor de recursos.</p>
+
+<h4>
+<a id="stop" class="anchor" href="#stop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stop</h4>
+
+<p><strong>Propósito:</strong> Detiene y cancela el recurso audio indicado en el parámetro, o en caso de no venir indicado, detiene todas las reproducciones de audio en curso.</p>
+
+<p><strong>Nombre de la acción:</strong> stop</p>
+
+<p><strong>Parámetros:</strong> Objeto JSON que contiene el nombre del recurso o null. </p>
+
+<pre><code>{"resource": null} // Parara todos los recursos audio que se estén reproduciendo
+</code></pre>
+
+<pre><code>Ejemplo: mobincube.action.stop(stop);
+Ejemplo: mobincube.action.stop();
+</code></pre>
+
+<h4>
+<a id="player" class="anchor" href="#player" aria-hidden="true"><span class="octicon octicon-link"></span></a>Player</h4>
+
+<p><strong>Propósito:</strong> Abre el reproductor audio/video por defecto del móvil y permite reproducir streaming desde URLs externas</p>
+
+<p><strong>Nombre de la accion:</strong>openPlayer</p>
+
+<p><strong>Parámetros:</strong> Objeto JSON que indica el resource que contiene el audio. Puede ser una URL para reproducir un streaming, un recurso audio estático en la App o un campo de un visor de datos.</p>
+
+<pre><code>//url de un streaming externo
+{“resource”: ”http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8”}
+</code></pre>
+
+<pre><code>Ejemplo: mobincube.action.openPlayer(url)
+</code></pre>
+
+<hr>
+
+<h2>
+<a id="-parámetros-públicos" class="anchor" href="#-par%C3%A1metros-p%C3%BAblicos" aria-hidden="true"><span class="octicon octicon-link"></span></a> Parámetros Públicos</h2>
+
+<hr>
+
+<h3>
+<a id="obtención-de-variables-del-sistema" class="anchor" href="#obtenci%C3%B3n-de-variables-del-sistema" aria-hidden="true"><span class="octicon octicon-link"></span></a>Obtención de variables del sistema:</h3>
+
+<p>Las Apps de Mobincube ponen a disposición de los desarrolladores una serie de variables globales destinadas a que el desarrollador pueda personalizar y analizar la actividad de sus usuarios. Las variables globales disponibles son las siguientes:</p>
+
+<ul>
+<li><p><strong>{instance}</strong> -&gt; Identificador único del dispositivo de 20 dígitos de longitud. Se mantiene constante hasta que se borra la App</p></li>
+<li><p><strong>{location}</strong> -&gt; Contiene la localización del dispositivo en el formato “longitud,latitud”. Se actualiza cada 10 segundos.</p></li>
+<li><p><strong>{idApp}</strong> -&gt; Código de identificación de la App. Cada App de Mobincube tiene uno diferente.</p></li>
+<li><p><strong>{deviceInfo}</strong> -&gt; Marca y modelo del dispositivo.</p></li>
+<li><p><strong>{deviceType}</strong> -&gt; Tableta/móvil</p></li>
+<li><p><strong>{osVersion}</strong> -&gt; Versión del sistema operativo.</p></li>
+<li><p><strong>{language}</strong> -&gt; Idioma del dispositivo (es,en,pt,fr…)</p></li>
+<li><p><strong>{screenSize}</strong> -&gt; Tamaño de la pantalla (ancho x alto)</p></li>
+<li><p><strong>{sectionName}</strong> -&gt; Nombre de la sección actual.</p></li>
+<li><p><strong>{country}</strong> -&gt; Nombre del país en el que se encuentra el dispositivo.</p></li>
+<li><p><strong>{ISOCountry}</strong> -&gt; Código del país en el que se encuentra el dispositivo.</p></li>
+<li><p><strong>{dataConnection}</strong> -&gt; Tipo de conexión a internet: WiFi,WWan, 3G, 4G…</p></li>
+<li><p><strong>{postalCode}</strong> -&gt; Código postal de la posición del usuario.</p></li>
+<li><p><strong>{address}</strong> -&gt; Dirección de la posición del usuario.</p></li>
+<li><p><strong>{locality}</strong> -&gt; Ciudad de la posición del usuario.</p></li>
+<li><p><strong>{subLocality}</strong> -&gt; Barrio de la posición del usuario.</p></li>
+<li><p><strong>{adminArea}</strong> -&gt; Condado de la posición del usuario.</p></li>
+<li><p><strong>{subAdminArea}</strong> -&gt; Provincia</p></li>
+<li><p><strong>{density}</strong> -&gt; Factor de escala de la pantalla: 3.0=iPhone plus, 2.0= retina, 1.0 = no retina</p></li>
+<li><p><strong>{session}</strong></p></li>
+<li><p><strong>{IP}</strong> -&gt; IP del dispositivo.</p></li>
+</ul>
+
+<p><strong><em>Geocaching</em></strong></p>
+
+<ul>
+<li><p><strong>{token}</strong> -&gt; Código único para el envió de notificaciones.</p></li>
+<li><p><strong>{carrierName}</strong> -&gt; Compañía de teléfono.</p></li>
+<li><p><strong>{bundleID}</strong> -&gt; Nombre del paquete de la App o el bundleID de iOS.</p></li>
+<li><p><strong>{appBuildTime}</strong> -&gt; Devuelve la fecha de generación de la App en Mobincube.</p></li>
+<li><p><strong>{appVersion}</strong> -&gt; Devuelve la versión de la App</p></li>
+</ul>
+
+<h4>
+<a id="como-pedirle-los-datos-a-la-app" class="anchor" href="#como-pedirle-los-datos-a-la-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Como pedirle los datos a la App.</h4>
+
+<p>Para que la App nos devuelva la información que contienen las variables anteriores, es necesario realizar una llamada mediante el protocolo Mobincube del siguiente estilo:</p>
+
+<pre><code>mobincube://javascript/[nombre de la función de respuesta](‘{variable1}’,’{variable2}’,…])
+</code></pre>
+
+<p>La función de respuesta es una función que tenemos que implementar en nuestro propio código al estilo:</p>
+
+<pre><code> Function getVariables (instance, country) {
+// Do Stuff…
+}
+</code></pre>
+
+<p>La llamada al protocolo Mobincube para esa función sería:</p>
+
+<pre><code>
+window.location.href= “mobincube://javascript/getVariables(‘{instance}’,’{country}’)”;
+
+</code></pre>
+
+<p>Tras realizar la llamada mediante el protocolo Mobincube, la App obtendrá el valor de dichas variables y llamará a la función de respuesta mandándole los datos obtenidos como propiedades de la función:</p>
+
+<pre><code>getVariables(‘12737126378126’,’Spain’);
+
+</code></pre>
+
+<p>Dentro de la función, podríamos ejecutar la lógica que consideráramos oportuna.</p>
+
+<hr>
+
+<h2>
+<a id="módulos" class="anchor" href="#m%C3%B3dulos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Módulos</h2>
+
+<hr>
+
+<p>Las Apps de Mobincube ponen a disposición de los desarrolladores la posibilidad de crear sus propios módulos. Mobincube ofrece el módulo de Login con el propio SDK aunque está sujeto a cualquier tipo de modificación.</p>
+
+<h2>
+<a id="modulo-de-login" class="anchor" href="#modulo-de-login" aria-hidden="true"><span class="octicon octicon-link"></span></a>Modulo de Login</h2>
+
+<hr>
+
+<hr>
+
+<p>Para trabajar con este módulo debemos tener una cuenta en el sistema de ParseJS que nos proporcione un ID de la App y un Key para que nos facilite el acceso a la base de datos que nos proporcionan.</p>
+
+<p><a href="https://www.parse.com/users">https://www.parse.com/users</a></p>
+
+<p>Una vez registrado en ParseJS, debemos introducir el nombre de la base de datos de la app donde guardaremos el nombre de usuario y la contraseña de cada usuario que se registre en nuestra app.</p>
+
+<h1>
+<a id="" class="anchor" href="#" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="http://whitehowler.ovh/ejemplo.png" alt="eje" title="eje">
+</h1>
+
+<p>Una vez introducido el nombre de la aplicación, nos saldrá una ventana parecida a esta: </p>
+
+<h1>
+<a id="-1" class="anchor" href="#-1" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="http://whitehowler.ovh/keys.png" alt="key" title="key">
+</h1>
+
+<p>De esta ventana nos interesa obtener el <strong>Application ID</strong> y el <strong>Javascript Key</strong> que son los que necesitaremos para poder trabajar con nuestro propio login. De manera opcional, podemos pasarle un último parámetro donde va el nombre de la sección al que accederá en caso de que el login sea incorrecto.</p>
+
+<h3>
+<a id="inicializando-el-módulo" class="anchor" href="#inicializando-el-m%C3%B3dulo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inicializando el módulo.</h3>
+
+<p>Una vez obtengamos estos dos valores, el siguiente paso es lanzar la siguiente orden.</p>
+
+<pre><code>mobincube.modules.initialize(idapp, javascriptkey, section, error)
+</code></pre>
+
+<p>El módulo SDK debe recibir tres parametros. El primero es el <strong>Application ID</strong>, seguido del <strong>Javascript Key</strong> y finalmente debe recibir el nombre de la <strong>sección</strong> a la que irá cuando el login sea correcto.</p>
+
+<pre><code>Ejemplo: mobincube.modules.initialize('NNJB8wHeBw06310WIK3BNsF2AZvYvTp58lz4u0Xh', 'zJLicjMd3CijyfylA1mHBYDq5sekLe0YH5OZQ2Iw', 'mainsection');
+Ejemplo: mobincube.modules.initialize('NNJB8wHeBw06310WIK3BNsF2AZvYvTp58lz4u0Xh', 'zJLicjMd3CijyfylA1mHBYDq5sekLe0YH5OZQ2Iw', 'mainsection', 'error section');
+</code></pre>
+
+<p>Una vez hecho eso, el resultado será el siguiente: </p>
+
+<h1>
+<a id="-2" class="anchor" href="#-2" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="http://whitehowler.ovh/login.png" alt="login" title="login">
+</h1>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/Mobincube/mobincube.js/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/Mobincube/mobincube.js/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/Mobincube/mobincube.js"></a> is maintained by <a href="https://github.com/Mobincube">Mobincube</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
