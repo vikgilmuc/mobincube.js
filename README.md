@@ -1,6 +1,9 @@
 # mobincube.js
 
 
+As this project was done with parse.com and it will be closed on january 2017 we developed a new one using moback that you can find at:
+
+https://github.com/vikgilmuc/login_with_moback
 
 #*Protocolo Mobincube*
 
@@ -380,6 +383,8 @@ Ejemplo: mobincube.modules.initialize('NNJB8wHeBw06310WIK3BNsF2AZvYvTp58lz4u0Xh'
 Una vez hecho eso, el resultado será el siguiente: 
 
 #![login](http://whitehowler.ovh/login.png  "login")
+
+
 
 
 
